@@ -1,0 +1,7 @@
+<!-- t.string   "name" -->
+
+<h1>Category show page</h1>
+<h3><%= @category.name%></h3>
+<%@category.posts.each do |post| %>
+<%= link_to post.title, post_path(post)%><br>
+<%end%>

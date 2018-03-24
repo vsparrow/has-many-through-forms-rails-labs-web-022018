@@ -1,0 +1,4 @@
+<h3>index</h3>
+<%@posts.each do |post|%>
+<%= link_to post.title, post_path(post)%> : Click for more<br>
+<%end%>
