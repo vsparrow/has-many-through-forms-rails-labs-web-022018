@@ -25,12 +25,23 @@
     <!-- add comment -->
 <%= form_for @post do |f| %>
   <%= f.fields_for :comments, @post.comments.build do |comments_fields| %>
-    <%= comments_fields.text_field :content %>
+    <!-- < %= comments_fields.text_field :content, options = {name: "comment_content"} %> -->
+    <%= comments_fields.text_field :content%>
+    USERNAME:
+    <!-- dropdown to select user. -->
+    <%= comments_fields.collection_select :user_id, User.all, :id, :username, options={name: "comment_user_id"} %>
+    <!-- END dropdown to select user. -->
+    <!-- or create new user  -->
+    <%=comments_fields.fields_for :user, f.object.users.build do |user_fields|%>
+    <%user_fields.text_field :username%>
+    <%end %>
+    <!-- end  create new user  -->
   <% end %>
+
+
   <%= f.submit value: "Press to add comment to post" %>
 <% end %>
-    <!-- dropdown to select user. -->
-    <!-- also create new user  -->
+
 <!--  end Form to add a new comment -->
 
 < %=form_for @comment do |f|%>   #this directs us to comment_path which is not what we really want.
